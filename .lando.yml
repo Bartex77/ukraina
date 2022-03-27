@@ -1,0 +1,4 @@
+name: ukraina
+recipe: symfony
+config:
+  webroot: public
