@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\FoodUnit;
+use App\Entity\ItemType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method FoodUnit|null find($id, $lockMode = null, $lockVersion = null)
- * @method FoodUnit|null findOneBy(array $criteria, array $orderBy = null)
- * @method FoodUnit[]    findAll()
- * @method FoodUnit[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ItemType|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ItemType|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ItemType[]    findAll()
+ * @method ItemType[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FoodUnitRepository extends ServiceEntityRepository
+class ItemTypeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FoodUnit::class);
+        parent::__construct($registry, ItemType::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(FoodUnit $entity, bool $flush = true): void
+    public function add(ItemType $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class FoodUnitRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(FoodUnit $entity, bool $flush = true): void
+    public function remove(ItemType $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class FoodUnitRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return FoodUnit[] Returns an array of FoodUnit objects
+    //  * @return ItemType[] Returns an array of ItemType objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
+            ->orderBy('i.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class FoodUnitRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?FoodUnit
+    public function findOneBySomeField($value): ?ItemType
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()

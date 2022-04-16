@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\FoodUnitRepository;
+use App\Repository\ItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=FoodUnitRepository::class)
+ * @ORM\Entity(repositoryClass=ItemRepository::class)
  */
-class FoodUnit
+class Item
 {
     /**
      * @ORM\Id
@@ -20,18 +20,18 @@ class FoodUnit
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=FoodType::class, mappedBy="unit")
+     * @ORM\OneToMany(targetEntity=ItemType::class, mappedBy="Item")
      */
-    private $foodTypes;
+    private $itemTypes;
 
     public function __construct()
     {
-        $this->foodTypes = new ArrayCollection();
+        $this->itemTypes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,29 +52,29 @@ class FoodUnit
     }
 
     /**
-     * @return Collection<int, FoodType>
+     * @return Collection<int, ItemType>
      */
-    public function getFoodTypes(): Collection
+    public function getItemTypes(): Collection
     {
-        return $this->foodTypes;
+        return $this->itemTypes;
     }
 
-    public function addFoodType(FoodType $foodType): self
+    public function addItemType(ItemType $itemType): self
     {
-        if (!$this->foodTypes->contains($foodType)) {
-            $this->foodTypes[] = $foodType;
-            $foodType->setUnit($this);
+        if (!$this->itemTypes->contains($itemType)) {
+            $this->itemTypes[] = $itemType;
+            $itemType->setItem($this);
         }
 
         return $this;
     }
 
-    public function removeFoodType(FoodType $foodType): self
+    public function removeItemType(ItemType $itemType): self
     {
-        if ($this->foodTypes->removeElement($foodType)) {
+        if ($this->itemTypes->removeElement($itemType)) {
             // set the owning side to null (unless already changed)
-            if ($foodType->getUnit() === $this) {
-                $foodType->setUnit(null);
+            if ($itemType->getItem() === $this) {
+                $itemType->setItem(null);
             }
         }
 

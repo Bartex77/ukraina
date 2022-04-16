@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\FoodTypeSpecific;
+use App\Entity\Unit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method FoodTypeSpecific|null find($id, $lockMode = null, $lockVersion = null)
- * @method FoodTypeSpecific|null findOneBy(array $criteria, array $orderBy = null)
- * @method FoodTypeSpecific[]    findAll()
- * @method FoodTypeSpecific[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Unit|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Unit|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Unit[]    findAll()
+ * @method Unit[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FoodTypeSpecificRepository extends ServiceEntityRepository
+class UnitRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FoodTypeSpecific::class);
+        parent::__construct($registry, Unit::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(FoodTypeSpecific $entity, bool $flush = true): void
+    public function add(Unit $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class FoodTypeSpecificRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(FoodTypeSpecific $entity, bool $flush = true): void
+    public function remove(Unit $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class FoodTypeSpecificRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return FoodTypeSpecific[] Returns an array of FoodTypeSpecific objects
+    //  * @return Unit[] Returns an array of Unit objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
+            ->orderBy('u.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class FoodTypeSpecificRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?FoodTypeSpecific
+    public function findOneBySomeField($value): ?Unit
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
